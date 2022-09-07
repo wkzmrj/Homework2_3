@@ -1,0 +1,65 @@
+1. 简述绑定事件(注册事件)三要素。
+
+事件源：给谁绑定事件；
+事件类型：绑定什么类型的事件；
+事件函数：事件发生之后执行什么内容；
+
+2. 简述innerHTML和innerText的区别。
+innerHTML：获取标签内部内容同时，包括标签，空白换行等；
+innerText：获取标签内部内容同时，过滤掉标签，去掉换行、缩进等空白；
+
+
+3. 简述排他思想制作的思路。
+思路：首先获取所有元素 =》 将所有元素样式设置成初始的样式 =》 最后留下自己，设置特定的样式；
+
+
+4. 列举常见的鼠标事件。
+
+click：单击事件
+dblclick：双击事件
+mousedown：按下鼠标键时触发
+mouseup：释放按下的鼠标键时触发
+mousemove：鼠标移动事件
+mouseover：移入事件
+mouseout：移出事件
+
+
+11. 请自定义一个注册事件的兼容函数，要求兼容三种注册事件方法。
+ele.on事件类型 = function () {}
+addEventListener(事件类型，事件处理函数，捕获)
+attachEvent(事件类型，事件处理函数)
+
+function addEventListener(element, eventName, handleFn) {
+if (element.addEventListener){
+element.addEventListener(eventName,handleFn);
+} else if (element.attachEvent){
+element.attachEvent('on' + eventName, handleFn)
+} else {
+element['on' + eventName] = handleFn;
+}
+}
+12. 将定时器的开始和停止过程书写在不同的事件函数内部，容易出现用户多次点击出现加速且运动不能停止的情况，请给出解决代码。
+
+设表先关的方法，在每次重新开启一个定时器之前都先关闭一下之前的定时器
+<script>
+  var start = document.getElementById("start");
+  var end = document.getElementById("end");
+  var box = document.getElementById("box");
+  var nowLeft = 0;
+  var timer;
+
+  start.onclick = function () {
+
+    clearInterval(timer);
+    timer = setInterval(function () {
+      nowLeft += 5;
+      box.style.left = nowLeft + "px";
+    },100);
+  };
+  end.onclick = function () {
+    clearInterval(timer);
+  };
+</script>
+
+
+13. 给 part1-模块2-任务1 的轮播图静态页面添加JS事件，让其成功滚动

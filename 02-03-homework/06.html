@@ -1,0 +1,43 @@
+<!-- 编写一段程序，实现文本框获取和失去焦点效果。要求：1、获得焦点时，如果内部内容为提示语 请输入搜索关键字 ，清空内容并且设置文字颜色为黑色；2、失去焦点时，如果内容为空，恢复默认提示语，并且设置文字颜色为灰色 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .gray {
+      color: gray;
+    }
+
+    .black {
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text" class="gray" value="请输入搜索关键字" id="txtSearch">
+  <input type="button" value="搜索" id="btnSearch">
+  <script>
+
+    var txtSearch = document.getElementById("txtSearch");
+
+    txtSearch.onfocus = function () {
+      if (this.value === "请输入搜索关键字") {
+        this.value = "";
+        this.className = "black";
+      }
+    };
+
+    txtSearch.onblur = function () {
+      if (this.value === "" || this.value === "请输入搜索关键字") {
+         this.value = "请输入搜索关键字";
+         this.className = "gray";
+      }
+    }
+  
+  </script>
+</body>
+
+</html>
